@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask auth</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .topnav {
+        overflow: hidden;
+        background-color: rgb(1, 1, 16);
+      }
+
+      .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+      .topnav a:hover {
+        background-color: rgb(252, 247, 247);
+        color: black;
+      }
+
+      .topnav a.active {
+        background-color: #056467;
+        color: white;
+      }
+      .topnav a.active {
+        background-color: #056467;
+        color: white;
+      }
+
+      
+    </style>
+    {% block css %}{% endblock %}
+</head>
+<body>
+    <div class="topnav">
+        <nav>
+            <a class="active">Health Care</a>
+            <a href="{{ url_for('main.index') }}" class="navbar-item">
+                Home
+            </a>
+            {% if current_user.id !=1 %}
+              <a href="{{ url_for('main.profile') }}" class="navbar-item">
+                Profile
+              </a>
+            {% endif %}
+            {% if current_user.id ==1 %}
+              <a href="{{ url_for('main.admin') }}" class="navbar-item">
+                Admin
+              </a>
+            {% endif %}
+            <a href="{{ url_for('auth.login') }}" class="navbar-item">
+                Login
+            </a>
+            <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+                Logout
+            </a>
+                  
+        </nav>
+    </div>
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</section>
+</body>
+</html>

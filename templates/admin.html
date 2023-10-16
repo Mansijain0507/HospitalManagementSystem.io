@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block css %}
+
+{% endblock %}  
+{% block content %}
+    <img src="{{url_for('static',filename='doctor1.jpg') }}"style=" width:100%;"> 
+    <div style="
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);">
+        {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+                {% endif %}
+        {% endwith %}
+        <h1 style="font-size: 55px;
+        font-weight: bold;
+        color: rgba(0, 10, 10, 0.863);">
+            Welcome to Admin Page
+        </h1>
+        <button style="background-color: #056467; color: white; margin-left: 250px;"><a href="{{ url_for('main.doctor') }}" style="background-color: #056467; color: white; text-decoration: none">Add Doctor</a></button>
+    </div>
+
+{% endblock %}

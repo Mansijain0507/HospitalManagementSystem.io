@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block css %}
+  <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <img src="{{url_for('static',filename='patient.jpg') }}"style=" width:100%;"> 
+    <div style="
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <h3>Add Doctor</h3>
+        <form method="POST" action="/doctor">
+            <div class="field">
+                <div style="margin-bottom: 10px;">
+                    <input class="input is-large" type="text" name="doctorName" placeholder="Doctor Name">
+                </div>
+            </div>
+            <div class="field">
+                <div style="margin-bottom: 10px;">
+                    <input class="input is-large" type="number" name="mobile" placeholder="Mobile No">
+                </div>
+            </div>
+            <div class="field">
+                <div style="margin-bottom: 10px;">
+                    <input class="input is-large" type="text" name="department" placeholder="Department">
+                </div>
+            </div>
+            <div class="row">
+                <button style="background-color: #056467; color: white;"><input type="submit" value="Register" style="background-color: #056467; color: white; border: none;"/></button>
+            </div>
+        </form>
+    </div>
+    {% if alldoctor|length==0 %}
+          <p style="font-size:medium; padding-left:20px;">No Records</p>
+        {% else %}
+            <table id="customers">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Doctor Name</th>
+                    <th scope="col">Mobile No</th>
+                    <th scope="col">Department</th>
+                </tr>
+    {% for doctors in alldoctor %}
+        <tr>
+            <td scope="row">{{loop.index}}</td>
+            <td>{{doctors.doctorName}}</td>
+            <td>{{doctors.mobile}}</td>
+            <td>{{doctors.department}}</td>
+    {% endfor %}
+    {% endif %}
+        </tr>
+      </table>
+    
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+<!-- {% block css %}
+  <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
+{%endblock %}  -->
+{% block content %}
+    
+    <img src="{{url_for('static',filename='doctor1.jpg') }}"style=" width:100%;"> 
+    <div style="
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <h3>Login</h3> 
+    
+        <div>
+            <form method="POST" action="/login">
+                <div class="field">
+                    <div style="margin-bottom: 10px;">
+                        <input class="input is-large" type="email" name="email" placeholder="Your Email" autofocus="">
+                    </div>
+                </div>
+                <div class="field">
+                    <div style="margin-bottom: 10px;">
+                        <input class="input is-large" type="password" name="password" placeholder="Your Password">
+                    </div>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <label>
+                        <input type="checkbox">
+                        Remember me
+                    </label>
+                </div>
+                <button style="background-color: #056467; color: white;">Login</button>
+            </form>
+            <h6>Don't have an account <a href="{{ url_for('auth.signup') }} ">Sign up?</a></h6>
+            
+        </div>
+    
+    </div>
+
+{% endblock %}
